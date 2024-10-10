@@ -142,7 +142,7 @@ jobs:
           lfs: ${{ env.git_lfs }}
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@nightly
         with:
           targets: ${{ matrix.targets }}
 
