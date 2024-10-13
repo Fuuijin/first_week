@@ -9,7 +9,8 @@ mod theme;
 use bevy::{
     asset::AssetMetaCheck,
     audio::{AudioPlugin, Volume},
-    prelude::*, window::WindowResolution,
+    prelude::*,
+    window::WindowResolution,
 };
 
 pub struct AppPlugin;
