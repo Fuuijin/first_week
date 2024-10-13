@@ -1,11 +1,11 @@
 [package]
-name = "bevy_snake"
+name = "first_week"
 authors = ["Mattias Ross <mattias@cultup.com>"]
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-bevy = { version = "0.14", features = ["wayland"] }
+bevy = "0.14"
 rand = "0.8"
 # Compile low-severity logs out of native builds for performance.
 log = { version = "0.4", features = [

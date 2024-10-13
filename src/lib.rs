@@ -9,7 +9,7 @@ mod theme;
 use bevy::{
     asset::AssetMetaCheck,
     audio::{AudioPlugin, Volume},
-    prelude::*,
+    prelude::*, window::WindowResolution,
 };
 
 pub struct AppPlugin;
@@ -40,6 +40,7 @@ impl Plugin for AppPlugin {
                         title: "Bevy Snake".to_string(),
                         canvas: Some("#bevy".to_string()),
                         fit_canvas_to_parent: true,
+                        resolution: WindowResolution::new(2048., 1280.),
                         prevent_default_event_handling: true,
                         ..default()
                     }
