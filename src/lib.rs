@@ -37,7 +37,7 @@ impl Plugin for AppPlugin {
                 })
                 .set(WindowPlugin {
                     primary_window: Window {
-                        title: "Bevy Snake".to_string(),
+                        title: "First Week".to_string(),
                         canvas: Some("#bevy".to_string()),
                         fit_canvas_to_parent: true,
                         resolution: WindowResolution::new(2048., 1280.),
