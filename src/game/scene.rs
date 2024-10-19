@@ -1,12 +1,11 @@
 use bevy::{
-    ecs::{
-        system::RunSystemOnce as _,
-        world::{self, Command},
-    },
+    ecs::{system::RunSystemOnce as _, world::Command},
     prelude::*,
 };
 
 use super::camera::SpawnMainCamera;
+
+pub const GRID_SIZE: (f32, f32) = (128.0, 128.0);
 
 /// Plugin for setting up the scene
 pub(super) fn plugin(app: &mut App) {
@@ -30,6 +29,10 @@ pub struct SetupScene {
 impl Command for SetupScene {
     fn apply(self, world: &mut World) {
         world.run_system_once_with(self, setup_scene);
+        SpawnMainCamera {
+            transform: Transform::from_xyz(GRID_SIZE.0, 95.0, 0.0).looking_at(Vec3::ZERO, Vec3::Y),
+        }
+        .apply(world);
     }
 }
 
@@ -38,7 +41,6 @@ fn setup_scene(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
-    world: &mut World,
 ) {
     commands.spawn(DirectionalLightBundle {
         transform: Transform::from_translation(Vec3::ONE).looking_at(Vec3::ZERO, Vec3::Y),
@@ -57,9 +59,4 @@ fn setup_scene(
             ..default()
         },
     ));
-    SpawnMainCamera {
-        transform: Transform::from_xyz(config.grid_size.0, 95.0, 0.0)
-            .looking_at(Vec3::ZERO, Vec3::Y),
-    }
-    .apply(world);
 }
