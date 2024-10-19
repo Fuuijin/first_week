@@ -1,7 +1,12 @@
 use bevy::{
-    ecs::{system::RunSystemOnce as _, world::Command},
+    ecs::{
+        system::RunSystemOnce as _,
+        world::{self, Command},
+    },
     prelude::*,
 };
+
+use super::camera::SpawnMainCamera;
 
 /// Plugin for setting up the scene
 pub(super) fn plugin(app: &mut App) {
@@ -33,6 +38,7 @@ fn setup_scene(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    world: &mut World,
 ) {
     commands.spawn(DirectionalLightBundle {
         transform: Transform::from_translation(Vec3::ONE).looking_at(Vec3::ZERO, Vec3::Y),
@@ -51,4 +57,9 @@ fn setup_scene(
             ..default()
         },
     ));
+    SpawnMainCamera {
+        transform: Transform::from_xyz(config.grid_size.0, 95.0, 0.0)
+            .looking_at(Vec3::ZERO, Vec3::Y),
+    }
+    .apply(world);
 }
